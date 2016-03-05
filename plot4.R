@@ -1,7 +1,7 @@
 options(warn=-1)
 library(data.table)
 library(dplyr)
-#fc = fread("household_power_consumption.txt")
+fc = fread("household_power_consumption.txt")
 fc1=subset(fc,Date=="1/2/2007"|Date=="2/2/2007")
 fc2<-mutate(fc1,gap=as.numeric(Global_active_power))
 fc3<-mutate(fc2,datetime=paste(Date,Time))
