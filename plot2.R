@@ -1,0 +1,13 @@
+library(data.table)
+options(warn=-1)
+fc = fread("household_power_consumption.txt")
+fc1=subset(fc,Date=="1/2/2007"|Date=="2/2/2007")
+library(dplyr)
+fc2<-mutate(fc1,gap=as.numeric(Global_active_power))
+fc3<-mutate(fc2,datetime=paste(Date,Time))
+dt1=strptime(as.character(fc3$datetime),"%d/%m/%Y %H:%M:%OS")
+png(file="plot2.png",width = 480, height = 480)
+plot(dt1,fc3$gap,type="l",xlab="",ylab="Global Active Power(kilowatts)")
+dev.off()
+options(warn=0)
+
